@@ -9,9 +9,9 @@ const person = (props) => {
   )
 }
 
-function renderChildren(children) {
+const renderChildren = (children) => {
   if (children) {
-    return <p>I am awesome!</p>
+    return <p>{children}</p>
   }
 }
 
