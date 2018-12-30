@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Person from "./Person/Person";
 import Validator from "./ValidationComponent/ValidationComponent"
-import Radium from 'radium'
+import Radium, { StyleRoot} from 'radium'
 
 class App extends Component {
   state = {
@@ -105,23 +105,25 @@ class App extends Component {
     // }
 
     return (
-      <div className="App">
-        <h1>Hi, I'm a react app!</h1>
-        <p className={classes.join(' ')}>This is really working!</p>
-        <div>
-          <input 
-          type="text" 
-          onKeyUp={(event) => this.textChangedHandler(event)}/>
-          <p>{validatorInput}</p>
-          <Validator
-            input={this.state.validator.input}
-          />
+      <StyleRoot>
+        <div className="App">
+          <h1>Hi, I'm a react app!</h1>
+          <p className={classes.join(' ')}>This is really working!</p>
+          <div>
+            <input 
+            type="text" 
+            onKeyUp={(event) => this.textChangedHandler(event)}/>
+            <p>{validatorInput}</p>
+            <Validator
+              input={this.state.validator.input}
+            />
+          </div>
+          <button
+            style={style}
+            onClick={this.togglePersonsHandler}>Switch Name</button>
+          {persons}
         </div>
-        <button
-          style={style}
-          onClick={this.togglePersonsHandler}>Switch Name</button>
-        {persons}
-      </div>
+      </StyleRoot>
     );
   }
 }
