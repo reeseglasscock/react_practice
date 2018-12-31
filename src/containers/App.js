@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
-import Person from "./Person/Person";
-import Validator from "./ValidationComponent/ValidationComponent"
+import Person from "../components/Persons/Person/Person";
+import Validator from "../components/ValidationComponent/ValidationComponent"
 import Radium, { StyleRoot} from 'radium'
 
 class App extends Component {
