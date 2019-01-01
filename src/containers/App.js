@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
 import Persons from "../components/Persons/Persons";
-import Validator from "../components/ValidationComponent/ValidationComponent"
 import Radium, { StyleRoot} from 'radium'
+import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
   state = {
@@ -16,7 +16,6 @@ class App extends Component {
   }
 
   deletePersonHandler = (personIndex) => {
-    // const persons = this.state.persons.slice();
     const persons = [...this.state.persons]
     persons.splice(personIndex, 1)
     this.setState({persons: persons})
@@ -51,75 +50,27 @@ class App extends Component {
   }
 
   render() {
-    const style = {
-      backgroundColor: 'green',
-      color: 'white',
-      font: 'inherit',
-      border: '2.5px solid black',
-      padding: '8px',
-      cursor: 'pointer',
-      borderRadius: '70px',
-      ':hover': {
-        backgroundColor: 'lightGreen',
-        color: 'black'
-      }
-    }
 
     let persons = null
 
     if (this.state.showPersons) {
-      persons = (
-        <div>
-          <Persons 
-          persons = {this.state.persons}
-          clicked={this.deletePersonHandler}
-          changed={this.nameChangeHandler}
-          />
-        </div>
-      )
-      style.backgroundColor = 'red'
-      style[':hover'] = {
-        backgroundColor: 'purple',
-          color: 'white'
-      }
+      persons = 
+        <Persons 
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangeHandler}
+        />
     }
-
-    const classes = []
-    if (this.state.persons.length <= 2) {
-      classes.push('red');
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('bold')
-    }
-
-    let validatorInput = this.state.validator.input;
-    // let validatorOutput = '';
-
-    // if (this.state.validator.input) {
-    //   validatorOutput = (
-        
-    //   )
-    // }
 
     return (
       <StyleRoot>
-        <div className="App">
-          <h1>Hi, I'm a react app!</h1>
-          <p className={classes.join(' ')}>This is really working!</p>
-          <div>
-            <input 
-            type="text" 
-            onKeyUp={(event) => this.textChangedHandler(event)}/>
-            <p>{validatorInput}</p>
-            <Validator
-              input={this.state.validator.input}
-            />
-          </div>
-          <button
-            style={style}
-            onClick={this.togglePersonsHandler}>Switch Name</button>
-          {persons}
-        </div>
+        <Cockpit
+        showPersons={this.state.showPersons}
+        persons={this.state.persons}
+        validator={this.state.validator}
+        clicked={this.togglePersonsHandler}>
+        </Cockpit>
+        {persons}
       </StyleRoot>
     );
   }
