@@ -5,14 +5,26 @@ import Radium, { StyleRoot} from 'radium'
 import Cockpit from '../components/Cockpit/Cockpit'
 
 class App extends Component {
-  state = {
-    persons: [
-      { id: '1', name: 'Max', age: 30},
-      { id: '2', name: 'Peter', age: 13},
-      { id: '3', name: 'Stacie', age: 44},
-    ],
-    showPersons: false,
-    validator: {input: '', output: ''}
+  constructor(props) {
+    super(props)
+    console.log('Inside App.js Contructor', props)
+    this.state = {
+      persons: [
+        { id: '1', name: 'Max', age: 30 },
+        { id: '2', name: 'Peter', age: 13 },
+        { id: '3', name: 'Stacie', age: 44 },
+      ],
+      showPersons: false,
+      validator: { input: '', output: '' }
+    }
+  }
+
+  componentWillMount() {
+    console.log('App.js inside of componenetWillMount()')
+  }
+
+  componentDidMount() {
+    console.log('App.js insdie of componentDidMount()')
   }
 
   deletePersonHandler = (personIndex) => {
@@ -50,6 +62,7 @@ class App extends Component {
   }
 
   render() {
+    console.log('App.js inside of render')
 
     let persons = null
 
